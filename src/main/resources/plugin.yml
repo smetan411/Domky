@@ -1,0 +1,15 @@
+name: Domky
+version: 1.0
+main: domky.MainDomky
+api-version: 1.18
+
+commands:
+  +domecek:
+  +standardniDomek:
+  +panelak:
+  +panelakOkna:
+  +panelakOknaSchody:
+  +zarovnejTeren:
+  +zarovnejTerenNahoru:
+  +zakladovaDeska:
+
