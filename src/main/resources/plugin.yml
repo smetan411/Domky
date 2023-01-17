@@ -4,12 +4,11 @@ main: domky.MainDomky
 api-version: 1.18
 
 commands:
-  +domecek:
-  +standardniDomek:
-  +panelak:
-  +panelakOkna:
-  +panelakOknaSchody:
   +zarovnejTeren:
   +zarovnejTerenNahoru:
   +zakladovaDeska:
+  +zedSeverJih:
+  +zedVychodZapad:
+  +domek:
+  +radoveDomky:
 

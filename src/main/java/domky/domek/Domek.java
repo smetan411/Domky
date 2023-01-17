@@ -13,45 +13,49 @@ import org.bukkit.block.data.type.Bed;
 import org.bukkit.block.data.type.Door;
 import org.bukkit.entity.Player;
 
-public class Domecek extends PlayerCommandExecutor {
-
+public class Domek extends PlayerCommandExecutor {
     @Override
     public boolean onCommandPlayer(Player player, World world, Location playerLocation, String[] args) {
-        postavDomecek(new AbsLocation(playerLocation));
+        int sirka;
+        int delka;
+        int vyskaSten;
+        if (args.length == 0) {
+            sirka = 10;
+            delka = 10;
+            vyskaSten = 6;
+        } else if (args.length != 3) {
+            player.sendMessage("Zadej tri rozmery, sirku a delku domu a vysku sten kazdeho patra.");
+            return true;
+        }
+        try {
+            sirka = Integer.parseInt(args[0]);
+            delka = Integer.parseInt(args[1]);
+            vyskaSten = Integer.parseInt(args[2]);
+            postavDomek(world, new AbsLocation(playerLocation), sirka, delka, vyskaSten);
+        }
+        catch (NumberFormatException e) {
+            player.sendMessage("Jeden z argumentu neni cislo.");
+        }
         return true;
     }
 
-    private final World svet;
-    private final int sirkaDomu;
-    private final int delkaDomu;
-    private final int vyskaSten;
-    private AbsLocation pocatekDomu;
-
-    public Domecek(World svet, int sirkaDomu, int delkaDomu, int vyskaSten) {
-        this.svet = svet;
-        this.sirkaDomu = sirkaDomu;
-        this.delkaDomu = delkaDomu;
-        this.vyskaSten = vyskaSten;
+    public void postavDomek(World svet, AbsLocation pocatekDomu, int sirkaDomu, int delkaDomu, int vyskaSten) {
+        postavZakladDesku(svet, pocatekDomu, sirkaDomu, delkaDomu);
+        postavStenuSJ(svet, pocatekDomu, 0, delkaDomu, vyskaSten );
+        postavStenuSJ(svet, pocatekDomu, sirkaDomu - 1, delkaDomu, vyskaSten);
+        postavStenuVZ(svet, pocatekDomu, 0, sirkaDomu, vyskaSten);
+        postavStenuVZ(svet, pocatekDomu, delkaDomu - 1,sirkaDomu, vyskaSten);
+        postavStrop(svet, pocatekDomu, sirkaDomu, delkaDomu, vyskaSten);
+        postavSloupy(svet, pocatekDomu, delkaDomu, sirkaDomu, vyskaSten);
+        postavPostel(svet, pocatekDomu, sirkaDomu, delkaDomu);
+        postavDvere(svet, pocatekDomu, delkaDomu);
+        postavStrechu1(svet, pocatekDomu, 0, sirkaDomu, delkaDomu, vyskaSten);
+        postavStrechu2(svet, pocatekDomu, delkaDomu - 1, sirkaDomu, delkaDomu, vyskaSten);
+        postavStitStrechy(svet, pocatekDomu, 0, vyskaSten);
+        postavStitStrechy(svet, pocatekDomu, sirkaDomu - 1, vyskaSten);
     }
 
-    public void postavDomecek(AbsLocation pocatekDomu) {
-        this.pocatekDomu = pocatekDomu;
-        postavZakladDesku();
-        postavStenuSJ(0);
-        postavStenuSJ(sirkaDomu - 1);
-        postavStenuVZ(0);
-        postavStenuVZ(delkaDomu - 1);
-        postavStrop();
-        postavSloupy();
-        postavPostel();
-        postavDvere();
-        postavStrechu1(0);
-        postavStrechu2(delkaDomu - 1);
-        postavStitStrechy(0);
-        postavStitStrechy(sirkaDomu - 1);
-    }
-
-    private void postavStitStrechy(int posun) {
+    private void postavStitStrechy(World svet, AbsLocation pocatekDomu, int posun, int vyskaSten) {
 
         for (int i = 0; i < 8; i++) {
             Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(1 + posun, 1 + vyskaSten, i).toLocation());
@@ -71,7 +75,7 @@ public class Domecek extends PlayerCommandExecutor {
         }
     }
 
-    private void postavZakladDesku() {
+    private void postavZakladDesku(World svet, AbsLocation pocatekDomu, int sirkaDomu, int delkaDomu) {
         for (int i = 0; i < sirkaDomu; i++) {
             for (int j = 0; j < delkaDomu; j++) {
                 Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, -1, j - 1).toLocation());
@@ -80,7 +84,7 @@ public class Domecek extends PlayerCommandExecutor {
         }
     }
 
-    private void postavStrop() {
+    private void postavStrop(World svet, AbsLocation pocatekDomu, int sirkaDomu, int delkaDomu, int vyskaSten) {
         for (int i = 0; i < sirkaDomu; i++) {
             for (int j = 0; j < delkaDomu; j++) {
                 Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, vyskaSten, j - 1).toLocation());
@@ -91,7 +95,7 @@ public class Domecek extends PlayerCommandExecutor {
         svetlo.setType(Material.LANTERN);
     }
 
-    private void postavStenuSJ(int posun) {
+    private void postavStenuSJ(World svet, AbsLocation pocatekDomu, int posun, int delkaDomu, int vyskaSten) {
         for (int i = 0; i < delkaDomu; i++) {
             for (int j = 0; j < vyskaSten; j++) {
                 Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(posun + 1, (j), i - 1).toLocation());
@@ -106,7 +110,7 @@ public class Domecek extends PlayerCommandExecutor {
         }
     }
 
-    private void postavStenuVZ(int posun) {
+    private void postavStenuVZ(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int vyskaSten) {
         for (int i = 0; i < sirkaDomu; i++) {
             for (int j = 0; j < vyskaSten; j++) {
                 Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, (j), posun - 1).toLocation());
@@ -121,7 +125,7 @@ public class Domecek extends PlayerCommandExecutor {
         }
     }
 
-    private void postavSloupy() {
+    private void postavSloupy(World svet, AbsLocation pocatekDomu, int delkaDomu, int sirkaDomu, int vyskaSten) {
         for (int i = 0; i < vyskaSten; i++) {
             Block sloup1 = svet.getBlockAt(pocatekDomu.plus(1, i, -1).toLocation());
             sloup1.setType(Material.OAK_WOOD);
@@ -134,7 +138,7 @@ public class Domecek extends PlayerCommandExecutor {
         }
     }
 
-    public void postavDvere() {
+    public void postavDvere(World svet, AbsLocation pocatekDomu, int delkaDomu) {
         Block blok1 = svet.getBlockAt(pocatekDomu.plus(2, 1, delkaDomu - 2).toLocation());
         blok1.setType(Material.AIR);
         Block blok2 = svet.getBlockAt(pocatekDomu.plus(2, 0, delkaDomu - 2).toLocation());
@@ -159,7 +163,7 @@ public class Domecek extends PlayerCommandExecutor {
         blok2.setBlockData(dvere2);
     }
 
-    private void postavStrechu1(int posun) {
+    private void postavStrechu1(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
         for (int i = 0; i < sirkaDomu; i++) {
             for (int j = 0; j < delkaDomu / 2; j++) {
                 Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, j + 1 + vyskaSten, (posun - 1) + j).toLocation());
@@ -171,7 +175,7 @@ public class Domecek extends PlayerCommandExecutor {
         }
     }
 
-    private void postavStrechu2(int posun) {
+    private void postavStrechu2(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
         for (int i = 0; i < sirkaDomu; i++) {
             for (int j = 0; j < delkaDomu / 2; j++) {
                 Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, j + 1 + vyskaSten, (posun - 1) - j).toLocation());
@@ -183,7 +187,7 @@ public class Domecek extends PlayerCommandExecutor {
         }
     }
 
-    public void postavPostel() {
+    public void postavPostel(World svet, AbsLocation pocatekDomu, int sirkaDomu, int delkaDomu) {
         Block blok1 = svet.getBlockAt(pocatekDomu.plus((sirkaDomu - 1), 0, -1 + delkaDomu / 2).toLocation());
         blok1.setType(Material.YELLOW_BED);
         final Bed postel1 = (Bed) blok1.getBlockData();

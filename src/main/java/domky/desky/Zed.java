@@ -1,12 +1,20 @@
 package domky.desky;
 
-import domky.PlayerCommandExecutor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
-public class Zed  {
+public class Zed {
+
+
+    private int vyskaZdi;
+    private int delkaZdi;
+
+    public Zed(int vyskaZdi, int delkaZdi) {
+        this.vyskaZdi = vyskaZdi;
+        this.delkaZdi = delkaZdi;
+    }
 
     public void postavZedSJ(World svet, Location misto, int vyskaZdi, int delkaZdi) {
         for (double y = misto.getY(); y < misto.getY() + vyskaZdi; y++) {
