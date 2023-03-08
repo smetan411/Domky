@@ -1,6 +1,7 @@
 package domky.desky;
 
 import domky.PlayerCommandExecutor;
+import domky.pocatek.AbsLocation;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;

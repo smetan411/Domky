@@ -6,8 +6,6 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 
 public class Zed {
-
-
     private int vyskaZdi;
     private int delkaZdi;
 
