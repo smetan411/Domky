@@ -16,24 +16,20 @@ import org.bukkit.entity.Player;
 public class Domek extends PlayerCommandExecutor {
     @Override
     public boolean onCommandPlayer(Player player, World world, Location playerLocation, String[] args) {
-        int sirka;
-        int delka;
-        int vyskaSten;
-        if (args.length == 0) {
-            sirka = 10;
-            delka = 10;
-            vyskaSten = 6;
-        } else if (args.length != 3) {
-            player.sendMessage("Zadej tri rozmery, sirku a delku domu a vysku sten kazdeho patra.");
-            return true;
-        }
+        int sirka = 10;
+        int delka = 10;
+        int vyskaSten = 6;
         try {
-            sirka = Integer.parseInt(args[0]);
-            delka = Integer.parseInt(args[1]);
-            vyskaSten = Integer.parseInt(args[2]);
+        if (args.length == 3) {
+                sirka = Integer.parseInt(args[0]);
+                delka = Integer.parseInt(args[1]);
+                vyskaSten = Integer.parseInt(args[2]);
+            } else if (args.length != 3 && args.length != 0) {
+                player.sendMessage("Zadej tri rozmery, sirku a delku domu a vysku sten kazdeho patra.");
+                return true;
+            }
             postavDomek(world, new AbsLocation(playerLocation), sirka, delka, vyskaSten);
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             player.sendMessage("Jeden z argumentu neni cislo.");
         }
         return true;
@@ -41,10 +37,10 @@ public class Domek extends PlayerCommandExecutor {
 
     public void postavDomek(World svet, AbsLocation pocatekDomu, int sirkaDomu, int delkaDomu, int vyskaSten) {
         postavZakladDesku(svet, pocatekDomu, sirkaDomu, delkaDomu);
-        postavStenuSJ(svet, pocatekDomu, 0, delkaDomu, vyskaSten );
+        postavStenuSJ(svet, pocatekDomu, 0, delkaDomu, vyskaSten);
         postavStenuSJ(svet, pocatekDomu, sirkaDomu - 1, delkaDomu, vyskaSten);
         postavStenuVZ(svet, pocatekDomu, 0, sirkaDomu, vyskaSten);
-        postavStenuVZ(svet, pocatekDomu, delkaDomu - 1,sirkaDomu, vyskaSten);
+        postavStenuVZ(svet, pocatekDomu, delkaDomu - 1, sirkaDomu, vyskaSten);
         postavStrop(svet, pocatekDomu, sirkaDomu, delkaDomu, vyskaSten);
         postavSloupy(svet, pocatekDomu, delkaDomu, sirkaDomu, vyskaSten);
         postavPostel(svet, pocatekDomu, sirkaDomu, delkaDomu);
