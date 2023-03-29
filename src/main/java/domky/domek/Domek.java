@@ -190,6 +190,7 @@ public class Domek extends PlayerCommandExecutor {
         postel1.setPart(Bed.Part.HEAD);
         postel1.setFacing(BlockFace.NORTH);
         blok1.setBlockData(postel1);
+
         Block blok2 = svet.getBlockAt(pocatekDomu.plus(sirkaDomu - 1, 0, delkaDomu / 2).toLocation());
         blok2.setType(Material.YELLOW_BED);
         final Bed postel2 = (Bed) blok2.getBlockData();
