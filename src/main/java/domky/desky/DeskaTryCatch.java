@@ -13,13 +13,16 @@ public class DeskaTryCatch extends PlayerCommandExecutor {
     public boolean onCommandPlayer(Player player, World world, Location playerLocation, String[] args) {
         int delkaDesky = 10;
         int sirkaDesky = 15;
+
         try {
+
             if (args.length == 2) {
                 delkaDesky = Integer.parseInt(args[0]);
-                delkaDesky = Integer.parseInt(args[1]);
+                sirkaDesky = Integer.parseInt(args[1]);
             } else if (args.length > 0 && args.length != 2) {
                 player.sendMessage("Musis zadat dva parametry, delkaDesky a sirkaDesky.");
             }
+
             playerLocation.add(0, -1, 0);
             for (int i = 0; i < delkaDesky; i++) {
                 for (int j = 0; j < sirkaDesky; j++) {
@@ -29,6 +32,7 @@ public class DeskaTryCatch extends PlayerCommandExecutor {
                 }
                 playerLocation.add(1, 0, -sirkaDesky);
             }
+
         } catch (NumberFormatException e) {
             player.sendMessage("Argument musi byt cislo.");
         }

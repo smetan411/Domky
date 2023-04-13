@@ -1,4 +1,4 @@
-package domky.domek;
+package domky.stavby;
 
 import domky.PlayerCommandExecutor;
 import domky.pocatek.AbsLocation;

@@ -6,13 +6,15 @@ api-version: 1.18
 commands:
   +zarovnejTeren:
   +zarovnejTerenNahoru:
+  +vymazKolemHrace:
   +zakladovaDeska:
   +deskaZadani:
   +zedSeverJih:
   +zedVychodZapad:
   +domek:
-  +radoveDomky:
   +panelak:
-  +panelakOkna:
-  +panelakOknaSchody:
-
+  +domekVetsiOkna:
+  +schodySever:
+  +schodyJih:
+  +schodyVychod:
+  +schodyZapad:
