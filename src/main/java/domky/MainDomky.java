@@ -4,6 +4,7 @@ import domky.desky.Deska;
 import domky.desky.DeskaTryCatch;
 import domky.desky.ZedSJ;
 import domky.desky.ZedVZ;
+import domky.pocatek.AbsLocation;
 import domky.schody.Schodky;
 import domky.stavby.Domek;
 import domky.stavby.DomekVetsiOkna;
@@ -11,6 +12,7 @@ import domky.stavby.Panelak;
 import domky.teren.MazaniKolemHrace;
 import domky.teren.ZarovnaniTerenu;
 import domky.teren.ZarovnaniTerenuNahoru;
+import domky.vesnicka.Vesnicka;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -18,9 +20,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+
 public final class MainDomky extends JavaPlugin {
     @Override
-
     public void onEnable() {
         getCommand("+zarovnejTeren").setExecutor(new ZarovnaniTerenu());
         getCommand("+zarovnejTerenNahoru").setExecutor(new ZarovnaniTerenuNahoru());
@@ -37,13 +39,17 @@ public final class MainDomky extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) return false;
-        Player hrac = (Player) sender;
-        World world = hrac.getWorld();
-        Location location = hrac.getLocation();
-
+        Player player = (Player) sender;
+        World world = player.getWorld();
+        Location location = player.getLocation();
         Schodky schodky = new Schodky();
+        AbsLocation pocatekDomu = new AbsLocation(location);
+        Vesnicka vesnicka = new Vesnicka(pocatekDomu, world, 10,10,6,6);
 
         switch(command.getName()){
+            case "+vesnicka":
+                vesnicka.postavVesnicku();
+                break;
             case "+schodySever":
                 schodky.postavSchodisteSever(world, location);
                 break;
