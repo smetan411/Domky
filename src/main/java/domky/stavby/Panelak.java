@@ -21,9 +21,6 @@ public class Panelak extends PlayerCommandExecutor {
         int delkaDomu = 10;
         int vyskaPatra = 6;
         int pocetPodlazi = 6;
-        AbsLocation pocatekDomu;
-
-
         try {
             if (args.length == 3) {
                 sirkaDomu = Integer.parseInt(args[0]);
@@ -41,27 +38,28 @@ public class Panelak extends PlayerCommandExecutor {
         return true;
     }
 
-    public void postavPanelak(World svet, AbsLocation pocatekDomu, int sirkaDomu, int delkaDomu, int vyskaPatra, int pocetPodlazi){
+    public void postavPanelak(World svet, AbsLocation pocatekDomu, int sirkaDomu, int delkaDomu, int vyskaPatra, int pocetPodlazi) {
         Schody schodiste = new Schody();
 
         for (int podlazi = 0; podlazi < pocetPodlazi; podlazi++) {
             postavPodlazi(svet, pocatekDomu, sirkaDomu, delkaDomu, vyskaPatra, podlazi);
         }
         for (int podlazi = 0; podlazi < pocetPodlazi; podlazi++) {
-            schodiste.postavSchodisteDum(svet, pocatekDomu.plus(2, (podlazi * vyskaPatra)+1, 6), 2, vyskaPatra);
+            schodiste.postavSchodisteDum(svet, pocatekDomu.plus(2, (podlazi * vyskaPatra) + 1, 6), 2, vyskaPatra);
         }
     }
 
     private void postavPodlazi(World svet, AbsLocation pocatekDomu, int sirkaDomu, int delkaDomu, int vyskaPatra, int podlazi) {
         postavZakladDeskuStrop(svet, pocatekDomu, sirkaDomu, delkaDomu, vyskaPatra, podlazi);
-        postavStenuSJ(svet,pocatekDomu, 1, delkaDomu, vyskaPatra, podlazi);
+        postavStenuSJ(svet, pocatekDomu, 1, delkaDomu, vyskaPatra, podlazi);
         postavStenuSJ(svet, pocatekDomu, sirkaDomu, delkaDomu, vyskaPatra, podlazi);
-        postavStenuVZ(svet, pocatekDomu,0,  sirkaDomu, vyskaPatra, podlazi);
-        postavStenuVZ(svet, pocatekDomu,delkaDomu - 1,  sirkaDomu,vyskaPatra, podlazi);
-        postavZakladDeskuStrop(svet, pocatekDomu,sirkaDomu, delkaDomu,vyskaPatra, podlazi + 1);
-        postavPostel(svet, pocatekDomu,  sirkaDomu, delkaDomu, vyskaPatra, podlazi);
-        postavDvere(svet, pocatekDomu,  delkaDomu);
+        postavStenuVZ(svet, pocatekDomu, 0, sirkaDomu, vyskaPatra, podlazi);
+        postavStenuVZ(svet, pocatekDomu, delkaDomu - 1, sirkaDomu, vyskaPatra, podlazi);
+        postavZakladDeskuStrop(svet, pocatekDomu, sirkaDomu, delkaDomu, vyskaPatra, podlazi + 1);
+        postavPostel(svet, pocatekDomu, sirkaDomu, delkaDomu, vyskaPatra, podlazi);
+        postavDvere(svet, pocatekDomu, delkaDomu);
     }
+
     private void postavZakladDeskuStrop(World svet, AbsLocation pocatekDomu, int sirkaDomu, int delkaDomu, int vyskaPatra, int podlazi) {
         for (int i = 0; i < sirkaDomu; i++) {
             for (int j = 0; j < delkaDomu; j++) {
@@ -80,7 +78,7 @@ public class Panelak extends PlayerCommandExecutor {
                 aktualniBlok.setType(Material.STONE);
             }
         }
-        vyrobOknaSJ(svet, pocatekDomu,posun, delkaDomu, vyskaPatra, podlazi);
+        vyrobOknaSJ(svet, pocatekDomu, posun, delkaDomu, vyskaPatra, podlazi);
     }
 
     private void postavStenuVZ(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int vyskaPatra, int podlazi) {
@@ -90,10 +88,10 @@ public class Panelak extends PlayerCommandExecutor {
                 aktualniBlok.setType(Material.STONE);
             }
         }
-        vyrobOknaVZ(svet, pocatekDomu,posun,  sirkaDomu, vyskaPatra, podlazi);
+        vyrobOknaVZ(svet, pocatekDomu, posun, sirkaDomu, vyskaPatra, podlazi);
     }
 
-    private void vyrobOknaSJ(World svet, AbsLocation pocatekDomu,int posun,  int delkaDomu, int vyskaPatra, int podlazi) {
+    private void vyrobOknaSJ(World svet, AbsLocation pocatekDomu, int posun, int delkaDomu, int vyskaPatra, int podlazi) {
         for (int m = 0; m < 2; m++) {
             for (int n = 0; n < 2; n++) {
                 Block okno = svet.getBlockAt(pocatekDomu.plus(posun, podlazi * vyskaPatra + (n + 1), delkaDomu / 2 - (m + 1)).toLocation());
@@ -102,7 +100,7 @@ public class Panelak extends PlayerCommandExecutor {
         }
     }
 
-    private void vyrobOknaVZ(World svet, AbsLocation pocatekDomu,int posun,  int sirkaDomu, int vyskaPatra, int podlazi) {
+    private void vyrobOknaVZ(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int vyskaPatra, int podlazi) {
         for (int m = 0; m < 2; m++) {
             for (int n = 0; n < 2; n++) {
                 Block okno = svet.getBlockAt(pocatekDomu.plus(m + sirkaDomu / 2, podlazi * vyskaPatra + (n + 1), posun - 1).toLocation());

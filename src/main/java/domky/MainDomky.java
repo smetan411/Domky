@@ -12,6 +12,7 @@ import domky.stavby.Panelak;
 import domky.teren.MazaniKolemHrace;
 import domky.teren.ZarovnaniTerenu;
 import domky.teren.ZarovnaniTerenuNahoru;
+import domky.vesnicka.Manhattan;
 import domky.vesnicka.Vesnicka;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -45,10 +46,14 @@ public final class MainDomky extends JavaPlugin {
         Schodky schodky = new Schodky();
         AbsLocation pocatekDomu = new AbsLocation(location);
         Vesnicka vesnicka = new Vesnicka(pocatekDomu, world, 10,10,6);
+        Manhattan manhattan = new Manhattan(pocatekDomu, world, 10,10,6,6);
 
         switch(command.getName()){
             case "+vesnicka":
-                vesnicka.postavVesnicku();
+                manhattan.postavManhattan();
+                break;
+            case "+manhattan":
+                manhattan.postavManhattan();
                 break;
             case "+schodySever":
                 schodky.postavSchodisteSever(world, location);
