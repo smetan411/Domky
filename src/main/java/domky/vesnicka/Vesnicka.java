@@ -24,11 +24,12 @@ public class Vesnicka {
     public void postavVesnicku() {
 
         int[][] mapa = {
-                {1, 1, 1, 1, 1},
-                {0, 0, 0, 0, 0},
-                {2, 0, 2, 0, 2},
-                {0, 0, 0, 0, 0},
-                {1, 0, 1, 0, 1}
+                {1, 1, 1, 1, 1, 1},
+                {0, 0, 0, 0, 0, 0},
+                {2, 0, 2, 0, 0, 2},
+                {0, 0, 0, 0, 0, 0},
+                {1, 0, 1, 0, 1, 0},
+                {2, 0, 2, 0, 0, 2}
         };
 
         Domek domek = new Domek();
@@ -37,10 +38,10 @@ public class Vesnicka {
         for (int sloupec = 0; sloupec < mapa.length; sloupec++) {
             for (int radek = 0; radek < mapa[sloupec].length; radek++) {
                 if (mapa[radek][sloupec] == 1) {
-                    domek.postavDomek(svet, pocatekDomu, 10, 10, 6);
+                    domek.postavDomek(svet, pocatekDomu, sirkaDomu, delkaDomu, vyskaSten);
                 }
                 if (mapa[radek][sloupec] == 2) {
-                    vetsiDomek.postavDomek(svet, pocatekDomu, 10, 10, 6);
+                    vetsiDomek.postavDomek(svet, pocatekDomu, sirkaDomu, delkaDomu, vyskaSten);
                 }
                 pocatekDomu = pocatekDomu.plus(sirkaDomu, 0, 0);
             }

@@ -24,12 +24,12 @@ public class ZarovnaniTerenu extends PlayerCommandExecutor {
                 aktualniBlok.setType(Material.GRASS_BLOCK);
                 //nad deskou vzduch
                 playerLocation.add(0, 1, 0);
-                for (int y = 0; y < 35; y++) {
+                for (int y = 0; y < 39; y++) {
                     Block novyBlok = world.getBlockAt(playerLocation);
                     novyBlok.setType(Material.AIR);
                     playerLocation.add(0, 1, 0);
                 }
-                playerLocation.add(0, -36, 0);
+                playerLocation.add(0, -40, 0);
                 //smer dolu kamen
                 playerLocation.add(0, -1, 0);
                 for (int y = 0; y < 25; y++) {
