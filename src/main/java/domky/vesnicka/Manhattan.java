@@ -11,6 +11,7 @@ public class Manhattan {
     private final int delkaDomu;
     private final int vyskaSten;
 
+
     public Manhattan(AbsLocation pocatekMesta, World svet, int sirkaDomu,
                      int delkaDomu, int vyskaSten) {
         this.pocatekMesta = pocatekMesta;

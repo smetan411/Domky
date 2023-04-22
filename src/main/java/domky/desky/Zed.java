@@ -1,11 +1,13 @@
 package domky.desky;
 
+import domky.PlayerCommandExecutor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
-public class Zed {
+public class Zed  {
+
     private int vyskaZdi;
     private int delkaZdi;
 

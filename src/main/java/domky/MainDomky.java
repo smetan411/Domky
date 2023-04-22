@@ -29,13 +29,13 @@ public final class MainDomky extends JavaPlugin {
         getCommand("+zarovnejTeren").setExecutor(new ZarovnaniTerenu());
         getCommand("+zarovnejTerenNahoru").setExecutor(new ZarovnaniTerenuNahoru());
         getCommand("+vymazKolemHrace").setExecutor(new MazaniKolemHrace());
-        getCommand("+zakladovaDeska").setExecutor(new Deska(10, 15));
+        getCommand("+deska").setExecutor(new Deska(10, 15));
+        getCommand("+deskaZadani").setExecutor(new DeskaTryCatch());
         getCommand("+zedSeverJih").setExecutor(new ZedSJ(10, 15));
         getCommand("+zedVychodZapad").setExecutor(new ZedVZ(10, 15));
         getCommand("+domek").setExecutor(new Domek());
-        getCommand("+panelak").setExecutor(new Panelak());
-        getCommand("+deskaZadani").setExecutor(new DeskaTryCatch());
         getCommand("+domekVetsiOkna").setExecutor(new DomekVetsiOkna());
+        getCommand("+panelak").setExecutor(new Panelak());
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class MainDomky extends JavaPlugin {
         AbsLocation pocatekDomu = new AbsLocation(location);
         Vesnicka vesnicka = new Vesnicka(pocatekDomu, world, 10,10, 6);
         Manhattan manhattan = new Manhattan(pocatekDomu, world, 10,10,6);
-        Sidliste manhattan1 = new Sidliste(pocatekDomu,world, 10, 10, 6);
+        Sidliste sidliste = new Sidliste(pocatekDomu,world, 10, 10, 6);
 
         switch(command.getName()){
             case "+vesnicka":
@@ -57,8 +57,8 @@ public final class MainDomky extends JavaPlugin {
             case "+manhattan":
                 manhattan.postavManhattan();
                 break;
-            case "+manhattan1":
-                manhattan1.postavSidliste();
+            case "+sidliste":
+                sidliste.postavSidliste();
                 break;
             case "+schodySever":
                 schodky.postavSchodisteSever(world, location);
