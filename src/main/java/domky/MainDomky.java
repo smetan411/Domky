@@ -13,6 +13,7 @@ import domky.teren.MazaniKolemHrace;
 import domky.teren.ZarovnaniTerenu;
 import domky.teren.ZarovnaniTerenuNahoru;
 import domky.vesnicka.Manhattan;
+import domky.vesnicka.Sidliste;
 import domky.vesnicka.Vesnicka;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -45,12 +46,16 @@ public final class MainDomky extends JavaPlugin {
         Location location = player.getLocation();
         Schodky schodky = new Schodky();
         AbsLocation pocatekDomu = new AbsLocation(location);
+        Sidliste sidliste = new Sidliste(pocatekDomu, world, 10,10,6);
         Vesnicka vesnicka = new Vesnicka(pocatekDomu, world, 10,10,6);
         Manhattan manhattan = new Manhattan(pocatekDomu, world, 10,10,6,6);
 
         switch(command.getName()){
             case "+vesnicka":
-                manhattan.postavManhattan();
+                vesnicka.postavVesnicku();
+                break;
+            case "+sidliste":
+                sidliste.postavSidliste();
                 break;
             case "+manhattan":
                 manhattan.postavManhattan();

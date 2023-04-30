@@ -7,7 +7,7 @@ commands:
   +zarovnejTeren:
   +zarovnejTerenNahoru:
   +vymazKolemHrace:
-  +deska:
+  +zakladovaDeska:
   +deskaZadani:
   +zedSeverJih:
   +zedVychodZapad:
