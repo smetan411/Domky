@@ -22,19 +22,17 @@ public class DeskaTryCatch extends PlayerCommandExecutor {
             } else if (args.length > 0 && args.length != 2) {
                 player.sendMessage("Musis zadat dva parametry, delkaDesky a sirkaDesky.");
             }
-
-            playerLocation.add(0, -1, 0);
-            for (int i = 0; i < delkaDesky; i++) {
-                for (int j = 0; j < sirkaDesky; j++) {
-                    Block aktualniBlok = world.getBlockAt(playerLocation);
-                    aktualniBlok.setType(Material.QUARTZ_BLOCK);
-                    playerLocation.add(0, 0, 1);
-                }
-                playerLocation.add(1, 0, -sirkaDesky);
-            }
-
         } catch (NumberFormatException e) {
             player.sendMessage("Argument musi byt cislo.");
+        }
+        playerLocation.add(0, -1, 0);
+        for (int i = 0; i < delkaDesky; i++) {
+            for (int j = 0; j < sirkaDesky; j++) {
+                Block aktualniBlok = world.getBlockAt(playerLocation);
+                aktualniBlok.setType(Material.QUARTZ_BLOCK);
+                playerLocation.add(0, 0, 1);
+            }
+            playerLocation.add(1, 0, -sirkaDesky);
         }
         return true;
     }

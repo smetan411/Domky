@@ -7,15 +7,16 @@ commands:
   +zarovnejTeren:
   +zarovnejTerenNahoru:
   +vymazKolemHrace:
-  +zakladovaDeska:
+  +deska:
   +deskaZadani:
   +zedSeverJih:
   +zedVychodZapad:
   +domek:
+  +domekVetsiOkna:
   +vesnicka:
   +panelak:
+  +sidliste:
   +manhattan:
-  +domekVetsiOkna:
   +schodySever:
   +schodyJih:
   +schodyVychod:
