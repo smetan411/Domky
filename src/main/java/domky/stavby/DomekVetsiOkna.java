@@ -283,9 +283,6 @@ public class DomekVetsiOkna extends PlayerCommandExecutor {
         Block table = svet.getBlockAt(pocatekDomu.plus(2, 0, 3).toLocation());
         table.setType(Material.SMITHING_TABLE);
     }
-
-
-
 }
 
 
