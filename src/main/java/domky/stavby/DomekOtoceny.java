@@ -45,7 +45,7 @@ public class DomekOtoceny extends PlayerCommandExecutor {
         postavSloupy(svet, pocatekDomu, delkaDomu, sirkaDomu, vyskaSten);
         postavPostel(svet, pocatekDomu, sirkaDomu, delkaDomu);
         postavDvere(svet, pocatekDomu, delkaDomu);
-//        postavStrechu1(svet, pocatekDomu, 0, sirkaDomu, delkaDomu, vyskaSten);
+        postavStrechu1(svet, pocatekDomu, 0, sirkaDomu, delkaDomu, vyskaSten);
 //        postavStrechu2(svet, pocatekDomu, delkaDomu - 1, sirkaDomu, delkaDomu, vyskaSten);
         postavStitStrechy(svet, pocatekDomu, 0, vyskaSten);
         postavStitStrechy(svet, pocatekDomu, sirkaDomu - 1, vyskaSten);
@@ -159,17 +159,17 @@ public class DomekOtoceny extends PlayerCommandExecutor {
         blok2.setBlockData(dvere2);
     }
 
-//    private void postavStrechu1(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
-//        for (int i = 0; i < sirkaDomu; i++) {
-//            for (int j = 0; j < delkaDomu / 2; j++) {
-//                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, j + 1 + vyskaSten, (posun - 1) + j).toLocation());
-//                aktualniBlok.setType(Material.RED_NETHER_BRICK_STAIRS);
-//                Directional kridlice = (Directional) aktualniBlok.getBlockData();
-//                kridlice.setFacing(BlockFace.SOUTH);
-//                aktualniBlok.setBlockData(kridlice);
-//            }
-//        }
-//    }
+    private void postavStrechu1(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
+        for (int i = 0; i < delkaDomu/2; i++) {
+            for (int j = 0; j < sirkaDomu; j++) {
+                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i+1, i+1 + vyskaSten, j-1).toLocation());
+                aktualniBlok.setType(Material.RED_NETHER_BRICK_STAIRS);
+                Directional kridlice = (Directional) aktualniBlok.getBlockData();
+                kridlice.setFacing(BlockFace.EAST);
+                aktualniBlok.setBlockData(kridlice);
+            }
+        }
+    }
 //
 //    private void postavStrechu2(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
 //        for (int i = 0; i < sirkaDomu; i++) {
