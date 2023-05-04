@@ -7,6 +7,7 @@ import domky.desky.ZedVZ;
 import domky.pocatek.AbsLocation;
 import domky.schody.Schodky;
 import domky.stavby.Domek;
+import domky.stavby.DomekOtoceny;
 import domky.stavby.DomekVetsiOkna;
 import domky.stavby.Panelak;
 import domky.teren.MazaniKolemHrace;
@@ -33,6 +34,7 @@ public final class MainDomky extends JavaPlugin {
         getCommand("+zedSeverJih").setExecutor(new ZedSJ(10, 15));
         getCommand("+zedVychodZapad").setExecutor(new ZedVZ(10, 15));
         getCommand("+domek").setExecutor(new Domek());
+        getCommand("+domekOtoceny").setExecutor(new DomekOtoceny());
         getCommand("+panelak").setExecutor(new Panelak());
         getCommand("+deskaZadani").setExecutor(new DeskaTryCatch());
         getCommand("+domekVetsiOkna").setExecutor(new DomekVetsiOkna());
