@@ -20,7 +20,7 @@ public class DomekOtoceny extends PlayerCommandExecutor {
         int delka = 10;
         int vyskaSten = 6;
         try {
-        if (args.length == 3) {
+            if (args.length == 3) {
                 sirka = Integer.parseInt(args[0]);
                 delka = Integer.parseInt(args[1]);
                 vyskaSten = Integer.parseInt(args[2]);
@@ -54,19 +54,19 @@ public class DomekOtoceny extends PlayerCommandExecutor {
     private void postavStitStrechy(World svet, AbsLocation pocatekDomu, int posun, int vyskaSten) {
 
         for (int i = 0; i < 8; i++) {
-            Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i+2, 1 + vyskaSten, posun-1).toLocation());
+            Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 2, 1 + vyskaSten, posun - 1).toLocation());
             aktualniBlok.setType(Material.OAK_WOOD);
         }
         for (int i = 0; i < 6; i++) {
-            Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i+3, 2 + vyskaSten, posun-1).toLocation());
+            Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 3, 2 + vyskaSten, posun - 1).toLocation());
             aktualniBlok.setType(Material.OAK_WOOD);
         }
         for (int i = 0; i < 4; i++) {
-            Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i+4, 3 + vyskaSten, posun-1).toLocation());
+            Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 4, 3 + vyskaSten, posun - 1).toLocation());
             aktualniBlok.setType(Material.OAK_WOOD);
         }
         for (int i = 0; i < 2; i++) {
-            Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i+5, 4 + vyskaSten, posun-1).toLocation());
+            Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 5, 4 + vyskaSten, posun - 1).toLocation());
             aktualniBlok.setType(Material.OAK_WOOD);
         }
     }
@@ -162,7 +162,7 @@ public class DomekOtoceny extends PlayerCommandExecutor {
     private void postavStrechu1(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
         for (int i = 0; i < delkaDomu/2; i++) {
             for (int j = 0; j < sirkaDomu; j++) {
-                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i+1, i+1 + vyskaSten, j-1).toLocation());
+                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, i + 1 + vyskaSten, j - 1).toLocation());
                 aktualniBlok.setType(Material.RED_NETHER_BRICK_STAIRS);
                 Directional kridlice = (Directional) aktualniBlok.getBlockData();
                 kridlice.setFacing(BlockFace.EAST);
@@ -170,11 +170,11 @@ public class DomekOtoceny extends PlayerCommandExecutor {
             }
         }
     }
-//
+
 //    private void postavStrechu2(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
-//        for (int i = 0; i < sirkaDomu; i++) {
-//            for (int j = 0; j < delkaDomu / 2; j++) {
-//                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, j + 1 + vyskaSten, (posun - 1) - j).toLocation());
+//        for (int i = 0; i < delkaDomu/2; i++) {
+//            for (int j = 0; j < sirkaDomu; j++) {
+//                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, j + 1 + vyskaSten, j + 1).toLocation());
 //                aktualniBlok.setType(Material.RED_NETHER_BRICK_STAIRS);
 //                Directional kridlice = (Directional) aktualniBlok.getBlockData();
 //                kridlice.setFacing(BlockFace.NORTH);
