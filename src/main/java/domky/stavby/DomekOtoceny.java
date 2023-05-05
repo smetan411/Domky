@@ -46,7 +46,7 @@ public class DomekOtoceny extends PlayerCommandExecutor {
         postavPostel(svet, pocatekDomu, sirkaDomu, delkaDomu);
         postavDvere(svet, pocatekDomu, delkaDomu);
         postavStrechu1(svet, pocatekDomu, 0, sirkaDomu, delkaDomu, vyskaSten);
-//        postavStrechu2(svet, pocatekDomu, delkaDomu - 1, sirkaDomu, delkaDomu, vyskaSten);
+        postavStrechu2(svet, pocatekDomu, delkaDomu - 1, sirkaDomu, delkaDomu, vyskaSten);
         postavStitStrechy(svet, pocatekDomu, 0, vyskaSten);
         postavStitStrechy(svet, pocatekDomu, sirkaDomu - 1, vyskaSten);
     }
@@ -170,18 +170,17 @@ public class DomekOtoceny extends PlayerCommandExecutor {
             }
         }
     }
-
-//    private void postavStrechu2(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
-//        for (int i = 0; i < delkaDomu/2; i++) {
-//            for (int j = 0; j < sirkaDomu; j++) {
-//                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, j + 1 + vyskaSten, j + 1).toLocation());
-//                aktualniBlok.setType(Material.RED_NETHER_BRICK_STAIRS);
-//                Directional kridlice = (Directional) aktualniBlok.getBlockData();
-//                kridlice.setFacing(BlockFace.NORTH);
-//                aktualniBlok.setBlockData(kridlice);
-//            }
-//        }
-//    }
+    private void postavStrechu2(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
+        for (int i = 0; i < delkaDomu/2; i++) {
+            for (int j = 0; j < sirkaDomu; j++) {
+                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(-i+sirkaDomu , i + 1 + vyskaSten, j-1).toLocation());
+                aktualniBlok.setType(Material.RED_NETHER_BRICK_STAIRS);
+                Directional kridlice = (Directional) aktualniBlok.getBlockData();
+                kridlice.setFacing(BlockFace.WEST);
+                aktualniBlok.setBlockData(kridlice);
+            }
+        }
+    }
 
     public void postavPostel(World svet, AbsLocation pocatekDomu, int sirkaDomu, int delkaDomu) {
         Block blok1 = svet.getBlockAt(pocatekDomu.plus((sirkaDomu - 1), 0, -1 + delkaDomu / 2).toLocation());
