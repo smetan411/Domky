@@ -135,9 +135,9 @@ public class DomekOtoceny extends PlayerCommandExecutor {
     }
 
     public void postavDvere(World svet, AbsLocation pocatekDomu, int delkaDomu) {
-        Block blok1 = svet.getBlockAt(pocatekDomu.plus(2, 1, delkaDomu - 2).toLocation());
+        Block blok1 = svet.getBlockAt(pocatekDomu.plus(3, 1, delkaDomu - 2).toLocation());
         blok1.setType(Material.AIR);
-        Block blok2 = svet.getBlockAt(pocatekDomu.plus(2, 0, delkaDomu - 2).toLocation());
+        Block blok2 = svet.getBlockAt(pocatekDomu.plus(3, 0, delkaDomu - 2).toLocation());
         blok2.setType(Material.AIR);
 
         blok1.setType(Material.DARK_OAK_DOOR);
@@ -160,9 +160,9 @@ public class DomekOtoceny extends PlayerCommandExecutor {
     }
 
     private void postavStrechu1(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
-        for (int i = 0; i < delkaDomu/2; i++) {
+        for (int i = 0; i < delkaDomu / 2; i++) {
             for (int j = 0; j < sirkaDomu; j++) {
-                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, i + 1 + vyskaSten, j - 1).toLocation());
+                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(i + 1, vyskaSten + i + 1, j - 1).toLocation());
                 aktualniBlok.setType(Material.RED_NETHER_BRICK_STAIRS);
                 Directional kridlice = (Directional) aktualniBlok.getBlockData();
                 kridlice.setFacing(BlockFace.EAST);
@@ -170,10 +170,11 @@ public class DomekOtoceny extends PlayerCommandExecutor {
             }
         }
     }
+
     private void postavStrechu2(World svet, AbsLocation pocatekDomu, int posun, int sirkaDomu, int delkaDomu, int vyskaSten) {
-        for (int i = 0; i < delkaDomu/2; i++) {
+        for (int i = 0; i < delkaDomu / 2; i++) {
             for (int j = 0; j < sirkaDomu; j++) {
-                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(-i+sirkaDomu , i + 1 + vyskaSten, j-1).toLocation());
+                Block aktualniBlok = svet.getBlockAt(pocatekDomu.plus(sirkaDomu - i, vyskaSten + i + 1, j - 1).toLocation());
                 aktualniBlok.setType(Material.RED_NETHER_BRICK_STAIRS);
                 Directional kridlice = (Directional) aktualniBlok.getBlockData();
                 kridlice.setFacing(BlockFace.WEST);

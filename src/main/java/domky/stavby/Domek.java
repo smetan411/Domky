@@ -134,16 +134,16 @@ public class Domek extends PlayerCommandExecutor {
         }
     }
 
-    public void postavDvere(World svet, AbsLocation pocatekDomu, int delkaDomu) {
-        Block blok1 = svet.getBlockAt(pocatekDomu.plus(2, 1, delkaDomu - 2).toLocation());
+    public void postavDvere(World svet, AbsLocation pocatekDomu, int sirkaDomu) {
+        Block blok1 = svet.getBlockAt(pocatekDomu.plus(sirkaDomu, 1, 1).toLocation());
         blok1.setType(Material.AIR);
-        Block blok2 = svet.getBlockAt(pocatekDomu.plus(2, 0, delkaDomu - 2).toLocation());
+        Block blok2 = svet.getBlockAt(pocatekDomu.plus(sirkaDomu, 0, 1).toLocation());
         blok2.setType(Material.AIR);
 
         blok1.setType(Material.DARK_OAK_DOOR);
         final Door dvere1 = (Door) blok1.getBlockData();
         dvere1.setOpen(false);
-        dvere1.setFacing(BlockFace.NORTH);
+        dvere1.setFacing(BlockFace.WEST);
         dvere1.setHalf(Bisected.Half.TOP);
         dvere1.setHinge(Door.Hinge.LEFT);
         dvere1.setPowered(false);
@@ -152,7 +152,7 @@ public class Domek extends PlayerCommandExecutor {
         blok2.setType(Material.DARK_OAK_DOOR);
         final Door dvere2 = (Door) blok2.getBlockData();
         dvere2.setOpen(false);
-        dvere2.setFacing(BlockFace.NORTH);
+        dvere2.setFacing(BlockFace.WEST);
         dvere2.setHalf(Bisected.Half.BOTTOM);
         dvere2.setHinge(Door.Hinge.LEFT);
         dvere2.setPowered(false);
