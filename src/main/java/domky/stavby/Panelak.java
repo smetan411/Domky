@@ -147,6 +147,5 @@ public class Panelak extends PlayerCommandExecutor {
         postel2.setPart(Bed.Part.FOOT);
         postel2.setFacing(BlockFace.NORTH);
         blok2.setBlockData(postel2);
-
     }
 }

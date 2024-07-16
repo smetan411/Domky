@@ -1,9 +1,6 @@
 package domky;
 
-import domky.desky.Deska;
-import domky.desky.DeskaTryCatch;
-import domky.desky.ZedSJ;
-import domky.desky.ZedVZ;
+import domky.desky.*;
 import domky.pocatek.AbsLocation;
 import domky.schody.Schodky;
 import domky.stavby.Domek;
@@ -38,6 +35,7 @@ public final class MainDomky extends JavaPlugin {
         getCommand("+panelak").setExecutor(new Panelak());
         getCommand("+deskaZadani").setExecutor(new DeskaTryCatch());
         getCommand("+domekVetsiOkna").setExecutor(new DomekVetsiOkna());
+        getCommand("+fontana").setExecutor(new Fontana());
     }
 
     @Override
